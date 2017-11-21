@@ -45,6 +45,7 @@ public class ServiceAuthApplication {
 
             @Override
             public void afterPropertiesSet() {
+                //修改
                 if(false){
 
                     SysRole adminRole = addRole("ROLE_ADMIN","管理员角色");

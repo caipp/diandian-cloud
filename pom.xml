@@ -114,7 +114,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <imageName>${docker.registry}}/${docker.image.prefix}/${project.artifactId}</imageName>
+                        <imageName>${docker.registry}/${docker.image.prefix}/${project.artifactId}</imageName>
                         <dockerDirectory>${project.basedir}/</dockerDirectory>
                         <resources>
                             <resource>

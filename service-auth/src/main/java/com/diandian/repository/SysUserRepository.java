@@ -5,8 +5,9 @@ import com.diandian.domain.SysUser;
 
 import java.util.Optional;
 
-public interface UserRepository extends BaseRepository<SysUser> {
+public interface SysUserRepository extends BaseRepository<SysUser> {
 
     Optional<SysUser> findOneWithRolesByUsername(String username);
 
+    Optional<SysUser> findByUsername(String username);
 }

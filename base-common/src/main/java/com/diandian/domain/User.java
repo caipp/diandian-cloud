@@ -1,13 +1,21 @@
 package com.diandian.domain;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.Assert;
+
+import java.util.*;
 
 
 /**
  * @author caipiaoping
  */
-public class User{
-
+@Setter
+@Getter
+public class User implements UserDetails {
+    public String id;
 
     public String username;
 
@@ -17,65 +25,61 @@ public class User{
 
     private String wxOpenId;
 
-    private String nikename;
+    private String nikeName;
 
     private String avatarUrl;
 
     private String gender;
 
-    public String getUsername() {
-        return username;
-    }
+    private boolean enabled;
 
-    public void setUsername(String username) {
+    private Set<GrantedAuthority> authorities;
+
+    public User(
+            String id,
+            String username,
+            String password,
+            Date lastPasswordReset,
+            String wxOpenId,
+            String nikeName,
+            String avatarUrl,
+            String gender,
+            boolean enabled ,
+            Set<GrantedAuthority> authorities) {
+        this.id = id;
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Date getLastPasswordReset() {
-        return lastPasswordReset;
-    }
-
-    public void setLastPasswordReset(Date lastPasswordReset) {
         this.lastPasswordReset = lastPasswordReset;
-    }
-
-    public String getWxOpenId() {
-        return wxOpenId;
-    }
-
-    public void setWxOpenId(String wxOpenId) {
         this.wxOpenId = wxOpenId;
-    }
-
-    public String getNikename() {
-        return nikename;
-    }
-
-    public void setNikename(String nikename) {
-        this.nikename = nikename;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
+        this.nikeName = nikeName;
         this.avatarUrl = avatarUrl;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
         this.gender = gender;
+        this.enabled = enabled;
+        this.authorities = authorities;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
     }
 }

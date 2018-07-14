@@ -1,16 +1,18 @@
 package com.diandian.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
- * Created by 12546 on 2016/11/14.
+ * @author caipiaoping
  */
 @Entity
 @Table(name = "sys_role")
+@Data
 public class SysRole extends BaseEntity {
 
     @Column(nullable = false, length = 30)
@@ -21,39 +23,11 @@ public class SysRole extends BaseEntity {
 
     private String comment;
 
-    @JsonIgnore
-    @ManyToMany(targetEntity = SysAuthority.class,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = SysAuthority.class,fetch = FetchType.LAZY)
     private Set<SysAuthority> authorities = new HashSet<>();
 
-    public String getCode() {
-        return code;
-    }
+    @ManyToMany(targetEntity = SysResource.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "m_role_resource", joinColumns = {@JoinColumn(name = "role_id")}, inverseJoinColumns = {@JoinColumn(name = "resource_id")})
+    private Set<SysResource> resources = new HashSet<>();
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Set<SysAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<SysAuthority> authorities) {
-        this.authorities = authorities;
-    }
 }

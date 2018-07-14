@@ -1,5 +1,7 @@
 package com.diandian.domain;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,6 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sys_authority")
+@Data
 public class SysAuthority extends BaseEntity {
     @Column(nullable = false, length = 30)
     private String code;
@@ -20,28 +23,4 @@ public class SysAuthority extends BaseEntity {
     private String name;
 
     private String comment;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

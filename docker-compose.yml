@@ -59,12 +59,30 @@ services:
           options:
             max-size: "10m"
             max-file: "10"
-#  auth-service:
-#    image: diandian/service-auth
-#    ports:
-#      - "5000:5000"
-#    container_name: service-auth
-#    logging:
-#          options:
-#            max-size: "10m"
-#            max-file: "10"
+  service-auth:
+    image: diandian/service-auth
+    ports:
+      - "5001:5000"
+    container_name: service-auth
+    logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+  service-auth2:
+      image: diandian/service-auth
+      ports:
+        - "5002:5000"
+      container_name: service-auth2
+      logging:
+            options:
+              max-size: "10m"
+              max-file: "10"
+  service-auth3:
+        image: diandian/service-auth
+#        ports:
+#          - "5002:5000"
+        container_name: service-auth3
+        logging:
+              options:
+                max-size: "10m"
+                max-file: "10"

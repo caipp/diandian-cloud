@@ -13,7 +13,7 @@ spring:
         multiplier: 2
         max-attempts: 10
   redis:
-      host: 127.0.0.1
+      host: 111.231.145.63
 logging.level.org.springframework.security: DEBUG
 
 logging.leve.org.springframework: DEBUG
@@ -21,4 +21,4 @@ logging.leve.org.springframework: DEBUG
 security:
   oauth2:
     resource:
-      filter-order: 1
+      filter-order: 3

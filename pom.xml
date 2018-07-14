@@ -26,6 +26,7 @@
         <module>base-common</module>
         <module>service-auth</module>
         <module>service-order</module>
+        <module>service-oss</module>
     </modules>
 
     <properties>
@@ -52,6 +53,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.14</version>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-server</artifactId>

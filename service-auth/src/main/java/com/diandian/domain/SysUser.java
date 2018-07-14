@@ -1,10 +1,12 @@
 package com.diandian.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "sys_user")
+@Data
 public class SysUser extends BaseEntity {
 
     @Column(nullable = false)
@@ -21,6 +24,16 @@ public class SysUser extends BaseEntity {
 
     @Column(nullable = false)
     private String password;
+
+    private Date lastPasswordReset;
+
+    private String wxOpenId;
+    @Column(nullable = false)
+    private String nickname;
+
+    private String avatarUrl;
+    private String gender;
+
 
     @JsonIgnore
     @ManyToMany(targetEntity = SysRole.class, fetch = FetchType.EAGER)
@@ -42,32 +55,4 @@ public class SysUser extends BaseEntity {
         return userAuthotities;
     }
 
-
-    public void setAuthorities(Set<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<SysRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<SysRole> roles) {
-        this.roles = roles;
-    }
 }
